@@ -2885,6 +2885,7 @@ header .header-logo a {
 #contact input[type="email"] {
 	height: 6.6rem;
 	padding: 1.8rem 2rem;
+        color: #FFFFFF;
 }
 
 #contact input[type="text"]:focus,
@@ -2981,7 +2982,7 @@ header .header-logo a {
 }
 
 .contact-info p {
-	color: #555;
+	color: #fff;
 }
 
 .contact-info .collapse {
