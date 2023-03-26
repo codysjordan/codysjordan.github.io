@@ -1,1 +1,269 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    /* Global styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    /* Header styles */
+    header {
+      background-color: #f8f8f8;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header img {
+      max-height: 50px;
+    }
+
+    /* Navigation styles */
+    nav {
+      background-color: #000;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px;
+      margin: 0 10px;
+      transition: all 0.2s ease;
+    }
+
+    nav a:hover {
+      background-color: #fff;
+      color: #000;
+      border-radius: 5px;
+    }
+
+    /* Biography section styles */
+    #bio {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    #bio h2 {
+      margin-bottom: 20px;
+    }
+
+    /* Gallery section styles */
+    #gallery {
+      padding: 50px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    #gallery img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      margin-bottom: 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Find us section styles */
+    #findus {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    #findus h2 {
+      margin-bottom: 20px;
+    }
+
+    #map {
+      width: 100%;
+      height: 400px;
+    }
+
+    /* Responsive styles */
+    @media (min-width: 768px) {
+      header img {
+        max-height: 75px;
+      }
+
+      #bio {
+        text-align: left;
+      }
+
+      #gallery {
+        padding: 50px;
+      }
+
+      #gallery img {
+        width: 45%;
+        margin: 10px;
+      }
+
+      #findus {
+        text-align: left;
+      }
+
+      #map {
+        height: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="Logo">
+    <nav>
+      <a href="#bio">Bio</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#findus">Find Us</a>
+    </nav>
+  </header>
+
+<div id="covid-widget"></div>
+
+<style>
+  #total-cases, #total-deaths {
+    font-size: 40px;
+    font-weight: bold;
+    color: red;
+    animation: countup 2s ease-out;
+  }
+
+  @keyframes countup {
+    from { 
+      opacity: 0;
+      transform: translateY(20px) scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+</style>
+
+<script>
+  const covidWidget = document.getElementById('covid-widget');
+
+  // Fetch data from the COVID Tracking Project API
+  fetch('https://api.covidtracking.com/v1/us/current.json')
+    .then(response => response.json())
+    .then(data => {
+      const totalCases = data[0].positive;
+      console.log(`Total cases: ${totalCases}`);
+      const totalDeaths = data[0].death;
+      console.log(`Total deaths: ${totalDeaths}`);
+
+      // Create the widget
+      const widgetHTML = `
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <h2 style="font-size: 40px;">COVID-19 Cases in the US</h2>
+          <span id="total-cases">0</span>
+          <h2 style="font-size: 40px;">COVID-19 Deaths in the US</h2>
+          <span id="total-deaths">0</span>
+        </div>
+      `;
+
+      // Insert the widget into the page
+      covidWidget.innerHTML = widgetHTML;
+
+      // Animate the counter by setting the text content of the element
+      const totalCasesElement = document.getElementById('total-cases');
+      const totalDeathsElement = document.getElementById('total-deaths');
+
+      const countUp = (startValue, endValue, duration, element) => {
+        const range = endValue - startValue;
+        const step = range / duration * 10;
+        let current = startValue;
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= endValue) {
+            clearInterval(timer);
+            current = endValue;
+          }
+          element.textContent = Math.floor(current);
+        }, 100);
+      };
+      countUp(0, totalCases, 500, totalCasesElement); // animate from 0 to totalCases over 2 seconds (20 steps)
+      countUp(0, totalDeaths, 500, totalDeathsElement);
+})
+.catch(error => console.error(error));
+</script>
+
+
+
+
+
+<section id="bio">
+  <div>
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non est non est lacus vulputate bibendum vitae non eros. Sed vel odio at sem bibendum sodales. Vestibulum sit amet elit aliquet, consequat odio et, eleifend orci. Vivamus vel lacinia nulla. Nulla eu luctus enim. Aliquam interdum dignissim lectus, eu gravida tellus mattis ac. Integer sed purus lobortis, congue ex sed, interdum urna. Fusce vitae venenatis ex, ut egestas massa.</p>
+    <p>Pellentesque eu elit sit amet justo laoreet mattis quis in arcu. In eleifend ac odio ut maximus. Morbi et velit vel lorem dictum efficitur. Suspendisse ac enim est. Pellentesque non neque non arcu venenatis viverra. Duis vehicula vitae odio ut volutpat. Nulla vehicula est id sem congue rutrum. Nam sed mi sapien. Nam rhoncus massa ut dolor ullamcorper, sed consequat odio sagittis.</p>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="thumbnail">
+    <a href="image1.jpg" target="_blank"><img src="image1_thumb.jpg" alt="Image 1"></a>
+  </div>
+  <div class="thumbnail">
+    <a href="image2.jpg" target="_blank"><img src="image2_thumb.jpg" alt="Image 2"></a>
+  </div>
+  <div class="thumbnail">
+    <a href="image3.jpg" target="_blank"><img src="image3_thumb.jpg" alt="Image 3"></a>
+  </div>
+  <div class="thumbnail">
+    <a href="image4.jpg" target="_blank"><img src="image4_thumb.jpg" alt="Image 4"></a>
+  </div>
+  <div class="thumbnail">
+    <a href="image5.jpg" target="_blank"><img src="image5_thumb.jpg" alt="Image 5"></a>
+  </div>
+  <div class="thumbnail">
+    <a href="image6.jpg" target="_blank"><img src="image6_thumb.jpg" alt="Image 6"></a>
+  </div>
+</section>
+
+<section id="findus">
+  <h2>Find Us</h2>
+  <div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3583.052667297955!2d-80.19178858446647!3d25.761681583628516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9b37bc7cf49c7%3A0x48c37a9be7bc6244!2sBayside%20Marketplace!5e0!3m2!1sen!2sus!4v1616471029574!5m2!1sen!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+  <p>123 Main St.</p>
+  <p>Anytown, USA 12345</p>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <p>&copy; 2023 Company Name. All rights reserved.</p>
+    <ul>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
+
