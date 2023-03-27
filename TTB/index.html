@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TTB Button</title>
+    <style>
+      body {
+        background: linear-gradient(to bottom, #ff0000, #ffa500, #ffff00, #008000, #0000ff, #4b0082, #ee82ee);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      button {
+        border: 5px solid black;
+        border-radius: 50%;
+        padding: 50px;
+        font-size: 2em;
+        background-color: white;
+      }
+      
+      img {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: none;
+      }
+      
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="ttb-button" onclick="toggleImage()">TTB</button>
+    <img id="snoop-gif" src="">
+    <script>
+      function toggleImage() {
+        const snoopGif = document.getElementById("snoop-gif");
+        if (snoopGif.style.display === "none") {
+          snoopGif.style.display = "block";
+        } else {
+          snoopGif.style.display = "none";
+        }
+      }
+      
+      document.getElementById("snoop-gif").src = "https://media2.giphy.com/media/cRNbYm7jLOjm9H8wcP/giphy.gif?cid=ecf05e47wm19k886yo02mexttt182eftty73u9s7dgslmiu8&rid=giphy.gif";
+    </script>
+  </body>
+</html>
