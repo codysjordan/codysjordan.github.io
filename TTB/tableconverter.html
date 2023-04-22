@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Spreadsheet to HTML Table Converter</title>
+  <style>
+    /* Style for the input textarea, output textarea, and table preview */
+    #inputTextarea,
+    #outputTextarea,
+    #tablePreview {
+      width: 100%;
+    }
+
+    /* Style for the output textarea */
+    #outputTextarea {
+      height: 200px;
+      white-space: pre;
+    }
+
+    /* Style for the table preview */
+    #tablePreview {
+      margin-top: 20px;
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+
+    #tablePreview th,
+    #tablePreview td {
+      border: 1px solid black;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Spreadsheet to HTML Table Converter</h1>
+  <label>
+    <input type="checkbox" id="firstRowAsHeadersCheckbox"> First Row as Headers
+  </label><br>
+  <textarea id="inputTextarea" rows="10" cols="50"></textarea><br>
+  <button id="convertBtn">Convert</button>
+  <textarea id="outputTextarea" rows="10" cols="50"></textarea>
+  <table id="tablePreview"></table>
+
+  <script>
+    document.getElementById('convertBtn').addEventListener('click', function () {
+      var inputText = document.getElementById('inputTextarea').value;
+      var firstRowAsHeaders = document.getElementById('firstRowAsHeadersCheckbox').checked;
+
+      var tableHtml = '<table style="border-collapse: collapse; border: 1px solid black;">';
+      var rows = inputText.split('\n');
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].trim() === '') continue; // Skip blank lines
+        tableHtml += '\n  <tr>';
+        var cells = rows[i].split('\t');
+        for (var j = 0; j < cells.length; j++) {
+          var cellTag = i === 0 && firstRowAsHeaders ? 'th' : 'td';
+          var cellHtml = '\n    <' + cellTag + ' style="border: 1px solid black; padding: 4px;">' + cells[j].replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') + '</' + cellTag + '>';
+          tableHtml += cellHtml;
+        }
+        tableHtml += '\n  </tr>';
+      }
+      tableHtml += '\n</table>';
+
+      document.getElementById('outputTextarea').value = tableHtml;
+      document.getElementById('tablePreview').innerHTML = tableHtml;
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Date Difference Calculator</title>
+    <style>
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="date"] {
+        width: 100%;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Date Difference Calculator</h1>
+    <label for="date1">First Date:</label>
+    <input type="date" id="date1">
+    <label for="date2">Second Date:</label>
+    <input type="date" id="date2">
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+    <script>
+      function calculate() {
+        const date1 = new Date(document.getElementById('date1').value);
+        const date2 = new Date(document.getElementById('date2').value);
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffYear = Math.floor(diffDays / 365);
+        const diffMonth = Math.floor((diffDays % 365) / 30);
+        const diffDay = (diffDays % 365) % 30;
+        document.getElementById('result').innerHTML = `${diffYear} years, ${diffMonth} months, ${diffDay} days<br>Total number of days: ${diffDays}`;
+      }
+    </script>
+  </body>
+</html>
