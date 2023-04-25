@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+	
+      /* Add some basic styling to the calculator */
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        margin-top: 0px;
+      }
+      .calculator {
+        width: 300px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f5f5f5;
+      }
+      .calculator input {
+        width: 300px;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: none;
+        font-size: 18px;
+        text-align: right;
+      }
+      .calculator button {
+        width: 50px;
+        height: 50px;
+        margin: 5px;
+        border-radius: 50%;
+        border: none;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #333;
+        cursor: pointer;
+      }
+      .calculator button:hover {
+        background-color: #555;
+      }
+      .calculator button:focus {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>GUI Calculator</h1>
+    <div class="calculator">
+      <input type="text" id="result" disabled>
+      <button onclick="clearResult()">C</button>
+      <button onclick="backspace()">←</button>
+      <button onclick="addValue('/')" class="operator">÷</button>
+      <br>
+      <button onclick="addValue('7')">7</button>
+      <button onclick="addValue('8')">8</button>
+      <button onclick="addValue('9')">9</button>
+      <button onclick="addValue('*')" class="operator">×</button>
+      <br>
+      <button onclick="addValue('4')">4</button>
+      <button onclick="addValue('5')">5</button>
+      <button onclick="addValue('6')">6</button>
+      <button onclick="addValue('-')" class="operator">-</button>
+      <br>
+      <button onclick="addValue('1')">1</button>
+      <button onclick="addValue('2')">2</button>
+      <button onclick="addValue('3')">3</button>
+      <button onclick="addValue('+' )" class="operator">+</button>
+      <br>
+      <button onclick="addValue('0')">0</button>
+      <button onclick="addValue('.')">.</button>
+      <button onclick="calculate()" class="operator">=</button>
+    </div>
+    <script>
+      // Calculator logic
+      function addValue(value) {
+        document.getElementById('result').value += value;
+      }
+      function clearResult() {
+        document.getElementById('result').value = '';
+      }
+      function backspace() {
+        let result = document.getElementById('result').value;
+        document.getElementById('result').value = result.substr(0, result.length - 1);
+      }
+      function calculate() {
+        let result = document.getElementById('result').value;
+        if (result) {
+          document.getElementById('result').value = eval(result);
+        }
+      }
+    </script>
+  </body
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comma to Line Break Converter</title>
+  <style>
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+#app {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+  <h1>Comma to Line Break Converter</h1>
+  <div id="app">
+    <textarea id="inputTextarea" placeholder="Enter items separated by commas or line breaks"></textarea>
+    <button id="convertButton">Convert</button>
+    <textarea id="outputTextarea" placeholder="Converted items will appear here" readonly></textarea>
+  </div>
+
+  <script>
+document.getElementById('convertButton').addEventListener('click', function() {
+  var inputTextarea = document.getElementById('inputTextarea');
+  var outputTextarea = document.getElementById('outputTextarea');
+  var input = inputTextarea.value.trim();
+
+  // Check if input is empty
+  if (input === '') {
+    alert('Please enter items to convert');
+    return;
+  }
+
+  // Convert commas to line breaks
+  if (input.indexOf(',') !== -1) {
+    var converted = input.replace(/,\s*/g, '\n'); // Update regex to remove spaces after comma
+    outputTextarea.value = converted;
+  }
+  // Convert line breaks to commas
+  else if (input.indexOf('\n') !== -1) {
+    var converted = input.replace(/\n/g, ', ');
+    outputTextarea.value = converted;
+  }
+  // No conversion needed
+  else {
+    alert('Input does not contain commas or line breaks');
+  }
+});
+
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Unit Converter</title>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+}
+
+    /* Style for result label */
+    #result {
+      font-size: 24px;
+      margin-top: 16px;
+    }
+
+    /* Style for select dropdowns */
+    select {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Unit Converter</h1>
+  <label for="inputValue">Value to Convert:</label>
+  <input type="number" id="inputValue" />
+
+  <br />
+
+  <label for="fromUnit">From Unit:</label>
+  <select id="fromUnit">
+    <option value="inch">Inch (in)</option>
+    <option value="foot">Foot (ft)</option>
+    <option value="yard">Yard (yd)</option>
+    <option value="meter">Meter (m)</option>
+    <option value="cm">Centimeter (cm)</option>
+    <option value="mm">Millimeter (mm)</option>
+    <option value="km">Kilometer (km)</option>
+    <option value="mile">Mile (mi)</option>
+  </select>
+
+  <br />
+
+  <label for="toUnit">To Unit:</label>
+  <select id="toUnit">
+    <option value="inch">Inch (in)</option>
+    <option value="foot">Foot (ft)</option>
+    <option value="yard">Yard (yd)</option>
+    <option value="meter">Meter (m)</option>
+    <option value="cm">Centimeter (cm)</option>
+    <option value="mm">Millimeter (mm)</option>
+    <option value="km">Kilometer (km)</option>
+    <option value="mile">Mile (mi)</option>
+  </select>
+
+  <br />
+
+  <button id="convertBtn" onclick="convert()">Convert</button>
+  <br />
+
+  <label id="result"></label>
+
+  <script>
+    // Conversion table
+    var conversionTable = {
+      inch: {
+        foot: 0.0833333,
+        yard: 0.0277778,
+        meter: 0.0254,
+        cm: 2.54,
+        mm: 25.4,
+        km: 0.0000254,
+        mile: 0.0000157828,
+      },
+      foot: {
+        inch: 12,
+        yard: 0.333333,
+        meter: 0.3048,
+        cm: 30.48,
+        mm: 304.8,
+        km: 0.0003048,
+        mile: 0.000189394,
+      },
+      yard: {
+        inch: 36,
+        foot: 3,
+        meter: 0.9144,
+        cm: 91.44,
+        mm: 914.4,
+        km: 0.0009144,
+        mile: 0.000568182,
+      },
+      meter: {
+        inch: 39.3701,
+        foot: 3.28084,
+        yard: 1.09361        ,
+        cm: 100,
+        mm: 1000,
+        km: 0.001,
+        mile: 0.000621371,
+      },
+      cm: {
+        inch: 0.393701,
+        foot: 0.0328084,
+        yard: 0.0109361,
+        meter: 0.01,
+        mm: 10,
+        km: 0.00001,
+        mile: 0.0000062137,
+      },
+      mm: {
+        inch: 0.0393701,
+        foot: 0.00328084,
+        yard: 0.00109361,
+        meter: 0.001,
+        cm: 0.1,
+        km: 0.000001,
+        mile: 0.00000062137,
+      },
+      km: {
+        inch: 39370.1,
+        foot: 3280.84,
+        yard: 1093.61,
+        meter: 1000,
+        cm: 100000,
+        mm: 1000000,
+        mile: 0.621371,
+      },
+      mile: {
+        inch: 63360,
+        foot: 5280,
+        yard: 1760,
+        meter: 1609.34,
+        cm: 160934,
+        mm: 1609340,
+        km: 1.60934,
+      },
+    };
+
+    // Function to convert units
+    function convert() {
+      var inputValue = document.getElementById("inputValue").value;
+      var fromUnit = document.getElementById("fromUnit").value;
+      var toUnit = document.getElementById("toUnit").value;
+      var resultLabel = document.getElementById("result");
+
+      if (inputValue === "") {
+        resultLabel.innerHTML = "Please enter a value to convert.";
+        return;
+      }
+
+      var convertedValue = inputValue * conversionTable[fromUnit][toUnit];
+      convertedValue = convertedValue.toFixed(2); // Round to 2 decimal places
+      resultLabel.innerHTML = inputValue + " " + fromUnit + " is equal to " + convertedValue + " " + toUnit;
+    }
+  </script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Date Difference Calculator</title>
+    <style>
+	body {
+  font-family: Arial, sans-serif;
+}
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="date"] {
+        width: 100%;
+        padding: 8px 16px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #result {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Date Difference Calculator</h1>
+    <label for="date1">First Date:</label>
+    <input type="date" id="date1">
+    <label for="date2">Second Date:</label>
+    <input type="date" id="date2">
+    <button onclick="calculate()">Calculate</button>
+    <div id="result"></div>
+    <script>
+      function calculate() {
+        const date1 = new Date(document.getElementById('date1').value);
+        const date2 = new Date(document.getElementById('date2').value);
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        const diffYear = Math.floor(diffDays / 365);
+        const diffMonth = Math.floor((diffDays % 365) / 30);
+        const diffDay = (diffDays % 365) % 30;
+        document.getElementById('result').innerHTML = `${diffYear} years, ${diffMonth} months, ${diffDay} days<br>Total number of days: ${diffDays}`;
+      }
+    </script>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lorem Ipsum Generator</title>
+	<style>
+	body {
+  font-family: Arial, sans-serif;
+}
+</style>
+  </head>
+  <body>
+    <h1>Lorem Ipsum Generator</h1>
+	<h2>Generate up to 5 paragraphs (press button repeatedly).</h2>
+    <button id="generateBtn">Generate</button>
+    <button id="clearBtn" style="display: none;">Clear</button>
+    <div id="text"></div>
+    
+    <script>
+      const paragraphs = [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et ante euismod, rhoncus mauris non, facilisis mauris. Praesent in tellus risus. Ut euismod sapien eu tincidunt efficitur.",
+        "Donec sit amet semper velit. Nulla tincidunt luctus porttitor. Nam vitae ante quis ipsum tincidunt sagittis. Suspendisse potenti. In porttitor lectus nibh, ut venenatis purus commodo a. ",
+        "Etiam vestibulum luctus urna eu mollis. Aliquam vitae purus vitae mi efficitur dignissim eu ac risus. Fusce facilisis enim vel faucibus interdum.",
+        "Praesent consequat turpis a risus elementum vestibulum. Quisque vehicula augue et diam suscipit aliquet. Fusce euismod diam vel eros euismod, a lacinia mauris sagittis.",
+        "Curabitur posuere ante non lacus consectetur, at blandit enim vestibulum. Suspendisse ornare urna eu blandit finibus. Maecenas interdum tellus id posuere lacinia."
+      ];
+      
+      const generateBtn = document.querySelector("#generateBtn");
+      const clearBtn = document.querySelector("#clearBtn");
+      const text = document.querySelector("#text");
+      let count = 0;
+      
+      generateBtn.addEventListener("click", () => {
+        if (count >= 5) {
+          return;
+        }
+        const paragraph = paragraphs[count];
+        const p = document.createElement("p");
+        p.textContent = paragraph;
+        text.appendChild(p);
+        count++;
+        clearBtn.style.display = "inline";
+      });
+      
+      clearBtn.addEventListener("click", () => {
+        text.innerHTML = "";
+        count = 0;
+        clearBtn.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Color Picker</title>
+    <style>
+	body {
+  font-family: Arial, sans-serif;
+}
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        input {
+            width: 200px;
+            height: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .color-input {
+            background-color: white;
+			
+        }
+
+        .color-input.valid {
+            background-color: var(--color);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+        <input type="text" id="colorInput" placeholder="Enter a color (HEX)..." pattern="[0-9A-Fa-f]{6}" maxlength="7" class="color-input" />
+        <input type="text" id="complementaryColorInput" value="Complementary color (HEX)..." readonly />
+    </div>
+
+    <script>
+        // Get input elements
+        const colorInput = document.getElementById('colorInput');
+        const complementaryColorInput = document.getElementById('complementaryColorInput');
+
+        // Add event listener for color input change
+        colorInput.addEventListener('input', () => {
+            let enteredColor = colorInput.value;
+            // If entered color has no "#" symbol, append it to the front
+            if (!enteredColor.startsWith('#')) {
+                enteredColor = '#' + enteredColor;
+                colorInput.value = enteredColor;
+            }
+            // Update background color of color input
+            colorInput.style.backgroundColor = enteredColor;
+            // Convert HEX color to RGB
+            const rgbColor = hexToRgb(enteredColor);
+            // Calculate and update complementary color
+            const complementaryColor = getComplementaryColor(rgbColor);
+            complementaryColorInput.value = complementaryColor;
+            // Update background color of complementary color input
+            complementaryColorInput.style.backgroundColor = complementaryColor;
+        });
+
+        // Add event listener for color input keypress
+        colorInput.addEventListener('keypress', (event) => {
+            // Prevent deletion of "#" symbol
+            if (event.key === '#' && colorInput.value.length === 0) {
+                event.preventDefault();
+            }
+            // Restrict input to 6-character HEX values
+            const validChars = /^[0-9A-Fa-f]{1}$/;
+            if (!validChars.test(event.key)) {
+                event.preventDefault();
+            }
+        });
+
+        // Helper function to convert HEX color to RGB
+        function hexToRgb(hex) {
+            // Remove '#' from color
+            hex = hex.replace('#', '');
+            // Convert color to RGB
+            const rgb = parseInt(hex, 16);
+            // Extract RGB components
+            const r = (rgb >> 16) & 0xFF;
+            const g = (rgb >> 8) & 0xFF;
+            const b = rgb & 0xFF;
+            // Return RGB color as an object
+            return { r, g, b };
+        }
+
+        // Helper function to calculate complementary color
+        function getComplementaryColor(rgbColor) {
+            // Calculate complementary color
+            const complementaryR = 255 - rgbColor.r;
+            const complementaryG = 255 - rgbColor.g;
+            const complementaryB = 255 - rgbColor.b;
+            // Convert complementary color to HEX
+            const complementaryColor = '#' + ((complementaryR << 16) | (complementaryG << 8) | complementaryB).toString(16).padStart(6, '0');
+            return complementaryColor;
+        }
+        // Helper function to calculate complementary color
+        function getComplementaryColor(rgbColor) {
+            // Calculate complementary color
+            const complementaryR = 255 - rgbColor.r;
+            const complementaryG = 255 - rgbColor.g;
+            const complementaryB = 255 - rgbColor.b;
+            // Convert complementary color to HEX
+            const complementaryColor = '#' + ((complementaryR << 16) | (complementaryG << 8) | complementaryB).toString(16).padStart(6, '0');
+            return complementaryColor;
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Code Generator</title>
+  <style>
+  h1 {
+      margin-bottom: 20px;
+  }
+  body {
+  font-family: Arial, sans-serif;
+}
+    /* CSS styles for the QR code generator */
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+
+      border: 1px solid #ccc;
+      border-radius: 5px;
+     
+    }
+
+    #qrCode {
+      margin-top: 20px;
+    }
+.center {
+text-align: center;
+margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>QR Code Generator</h1>
+    <label for="textInput">Enter text or URL:</label>
+    <input type="text" id="textInput" placeholder="Enter text or URL">
+     <div class="center">
+    <button onclick="generateQRCode()">Generate QR Code</button></div>
+    <div id="qrCode"></div>
+  </div>
+
+  <script src="https://davidshimjs.github.io/qrcodejs/qrcode.min.js"></script>
+  <script>
+    // JavaScript code for generating QR code using QRCode.js library
+    function generateQRCode() {
+      var text = document.getElementById('textInput').value;
+      if (text !== '') {
+        var qrCodeDiv = document.getElementById('qrCode');
+        qrCodeDiv.innerHTML = ''; // Clear previous QR code
+
+        // Generate QR code using QRCode.js library
+        var qrcode = new QRCode(qrCodeDiv, {
+          text: text,
+          width: 256,
+          height: 256,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Value Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: white; 
+    }
+    h1 {
+      text-align: center; /* Centered header */
+    }
+    #inputContainer {
+      margin: 20px auto;
+      width: 400px;
+    }
+    #inputTextArea {
+      width: 100%;
+      height: 200px;
+      resize: none;
+      font-size: 16px;
+      padding: 10px;
+    }
+    #selectButton {
+      display: block;
+      margin: 20px auto;
+      padding: 10px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+    }
+    #selectedValueContainer {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Value Selector</h1>
+  <div id="inputContainer">
+    <textarea id="inputTextArea" placeholder="Paste a list of up to 100 values separated by linebreaks or commas"></textarea>
+  </div>
+  <button id="selectButton">RANDOMLY SELECT</button>
+  <div id="selectedValueContainer"></div>
+  <script>
+    document.getElementById('selectButton').addEventListener('click', function() {
+      var inputTextArea = document.getElementById('inputTextArea');
+      var selectedValueContainer = document.getElementById('selectedValueContainer');
+      selectedValueContainer.textContent = '';
+      var values = inputTextArea.value.trim().split(/[\n,]+/); // Split input values by linebreaks or commas
+      if (values.length > 0) {
+        var randomIndex = Math.floor(Math.random() * values.length); // Generate random index
+        var selectedValue = values[randomIndex]; // Get randomly selected value
+        if (selectedValue) {
+          selectedValueContainer.textContent = 'Randomly Selected Value: ' + selectedValue;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Number Generator</title>
+	<style>
+	body {
+  font-family: Arial, sans-serif;
+}
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Random Number Generator</h1>
+	<form>
+		<label for="min">Min:</label>
+		<input type="number" id="min" name="min" min="0" max="100" value="1">
+
+		<label for="max">Max:</label>
+		<input type="number" id="max" name="max" min="0" max="100" value="100">
+
+		<button type="button" onclick="generateRandomNumber()">Random</button>
+	</form>
+
+	<p id="result"></p>
+
+	<script>
+		function generateRandomNumber() {
+			var min = parseInt(document.getElementById("min").value);
+			var max = parseInt(document.getElementById("max").value);
+
+			var randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
+
+			document.getElementById("result").innerHTML = "Random Number: " + randomNumber;
+		}
+	</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Spreadsheet to HTML Table Converter</title>
+  <style>
+  body {
+  font-family: Arial, sans-serif;
+}
+    /* Style for the input textarea, output textarea, and table preview */
+    #inputTextarea,
+    #outputTextarea,
+    #tablePreview {
+      width: 100%;
+    }
+
+    /* Style for the output textarea */
+    #outputTextarea {
+      height: 200px;
+      white-space: pre;
+    }
+
+    /* Style for the table preview */
+    #tablePreview {
+      margin-top: 20px;
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+
+    #tablePreview th,
+    #tablePreview td {
+      border: 1px solid black;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Spreadsheet to HTML Table Converter</h1>
+  <label>
+    <input type="checkbox" id="firstRowAsHeadersCheckbox"> First Row as Headers
+  </label><br>
+  <textarea id="inputTextarea" rows="10" cols="50"></textarea><br>
+  <button id="convertBtn">Convert</button>
+  <textarea id="outputTextarea" rows="10" cols="50"></textarea>
+  <table id="tablePreview"></table>
+
+  <script>
+    document.getElementById('convertBtn').addEventListener('click', function () {
+      var inputText = document.getElementById('inputTextarea').value;
+      var firstRowAsHeaders = document.getElementById('firstRowAsHeadersCheckbox').checked;
+
+      var tableHtml = '<table style="border-collapse: collapse; border: 1px solid black;">';
+      var rows = inputText.split('\n');
+      for (var i = 0; i < rows.length; i++) {
+        if (rows[i].trim() === '') continue; // Skip blank lines
+        tableHtml += '\n  <tr>';
+        var cells = rows[i].split('\t');
+        for (var j = 0; j < cells.length; j++) {
+          var cellTag = i === 0 && firstRowAsHeaders ? 'th' : 'td';
+          var cellHtml = '\n    <' + cellTag + ' style="border: 1px solid black; padding: 4px;">' + cells[j].replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;') + '</' + cellTag + '>';
+          tableHtml += cellHtml;
+        }
+        tableHtml += '\n  </tr>';
+      }
+      tableHtml += '\n</table>';
+
+      document.getElementById('outputTextarea').value = tableHtml;
+      document.getElementById('tablePreview').innerHTML = tableHtml;
+    });
+  </script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Character and Word Count</title>
+	<style>
+	body {
+  font-family: Arial, sans-serif;
+}
+		textarea {
+			width: 100%;
+			height: 200px;
+			resize: vertical;
+		}
+
+		button {
+			margin-top: 10px;
+		}
+	</style>
+	<script>
+		function countCharsAndWords() {
+			// Get the input value
+			var input = document.getElementById("text-input").value;
+
+			// Count the characters
+			var charCount = input.length;
+
+			// Count the words
+			var wordCount = input.match(/\S+/g)?.length || 0;
+
+			// Display the results
+			document.getElementById("char-count").innerHTML = "Character count: " + charCount;
+			document.getElementById("word-count").innerHTML = "Word count: " + wordCount;
+		}
+	</script>
+</head>
+<body>
+	<h1>Character and Word Count</h1>
+	<textarea id="text-input" placeholder="Enter text here"></textarea>
+	<button onclick="countCharsAndWords()">Count</button>
+	<p id="char-count"></p>
+	<p id="word-count"></p>
+</body>
+</html>
