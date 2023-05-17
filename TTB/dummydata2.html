@@ -93,8 +93,11 @@
     <br>
     <label for="dataType" style="padding-top: 10px;">Data Type:</label>
     <select id="dataType">
-      <option value="text">Text</option>
-      <option value="numeric">Numeric</option>
+      <option value="plainText">Plain Text</option>
+      <option value="integer">Integer</option>
+      <option value="float">Float</option>
+      <option value="date">Date</option>
+      <option value="dateTime">Date Time</option>
     </select>
     <br>
     <label for="showHeaders">
@@ -116,7 +119,7 @@
 
   <script>
     function generateTable() {
-            var numColumns = parseInt(document.getElementById("numColumns").value);
+      var numColumns = parseInt(document.getElementById("numColumns").value);
       var numRows = parseInt(document.getElementById("numRows").value);
       var dataType = document.getElementById("dataType").value;
       var showHeaders = document.getElementById("showHeaders").checked;
@@ -155,10 +158,16 @@
           var row = document.createElement("tr");
           for (var k = 1; k <= numColumns; k++) {
             var cell = document.createElement("td");
-            if (dataType === "text") {
+            if (dataType === "plainText") {
               cell.textContent = generateRandomText();
-            } else if (dataType === "numeric") {
-              cell.textContent = generateRandomNumber();
+            } else if (dataType === "integer") {
+              cell.textContent = generateRandomInteger();
+            } else if (dataType === "float") {
+              cell.textContent = generateRandomFloat();
+            } else if (dataType === "date") {
+              cell.textContent = generateRandomDate();
+            } else if (dataType === "dateTime") {
+              cell.textContent = generateRandomDateTime();
             }
             row.appendChild(cell);
           }
@@ -185,9 +194,41 @@
       return text;
     }
 
-    function generateRandomNumber() {
+    function generateRandomInteger() {
       return Math.floor(Math.random() * 1000);
     }
+
+    function generateRandomFloat() {
+      return parseFloat((Math.random() * 1000).toFixed(3));
+    }
+
+    function generateRandomDate() {
+  var startDate = new Date(1900, 0, 1).getTime(); // Start date in milliseconds since Jan 1, 1900
+  var currentDate = new Date().getTime(); // Current date in milliseconds
+  var randomDate = new Date(startDate + Math.random() * (currentDate - startDate));
+  
+  var year = String(randomDate.getFullYear());
+  var month = String(randomDate.getMonth() + 1).padStart(2, '0');
+  var day = String(randomDate.getDate()).padStart(2, '0');
+  
+  return year + '-' + month + '-' + day;
+}
+
+function generateRandomDateTime() {
+  var startDate = new Date(1900, 0, 1).getTime(); // Start date in milliseconds since Jan 1, 1900
+  var currentDate = new Date().getTime(); // Current date in milliseconds
+  var randomDateTime = new Date(startDate + Math.random() * (currentDate - startDate));
+  
+  var year = String(randomDateTime.getFullYear());
+  var month = String(randomDateTime.getMonth() + 1).padStart(2, '0');
+  var day = String(randomDateTime.getDate()).padStart(2, '0');
+  var hours = String(randomDateTime.getHours()).padStart(2, '0');
+  var minutes = String(randomDateTime.getMinutes()).padStart(2, '0');
+  var seconds = String(randomDateTime.getSeconds()).padStart(2, '0');
+  
+  return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+}
+
 
     function toggleDarkMode() {
       var body = document.body;
@@ -196,46 +237,53 @@
       container.classList.toggle("dark-mode");
     }
 
-  function exportTableToCSV() {
-  var numColumns = parseInt(document.getElementById("numColumns").value);
-  var numRows = parseInt(document.getElementById("numRows").value);
-  var dataType = document.getElementById("dataType").value;
-  var showHeaders = document.getElementById("showHeaders").checked;
+    function exportTableToCSV() {
+      var numColumns = parseInt(document.getElementById("numColumns").value);
+      var numRows = parseInt(document.getElementById("numRows").value);
+      var dataType = document.getElementById("dataType").value;
+      var showHeaders = document.getElementById("showHeaders").checked;
 
-  var csvContent = "data:text/csv;charset=utf-8,";
+      var csvContent = "data:text/csv;charset=utf-8,";
 
-  if (showHeaders) {
-    var headerRow = [];
-    for (var i = 1; i <= numColumns; i++) {
-      headerRow.push("Column" + i);
-    }
-    csvContent += headerRow.join(",") + "\n";
-  }
-
-  // Generate CSV rows with dummy data
-  for (var j = 1; j <= numRows; j++) {
-    var rowData = [];
-    for (var k = 1; k <= numColumns; k++) {
-      if (dataType === "text") {
-        rowData.push(generateRandomText());
-      } else if (dataType === "numeric") {
-        rowData.push(generateRandomNumber());
+      if (showHeaders) {
+        var headerRow = [];
+        for (var i = 1; i <= numColumns; i++) {
+          headerRow.push("Column" + i);
+        }
+        csvContent += headerRow.join(",") + "\n";
       }
+
+      // Generate CSV rows with dummy data
+      for (var j = 1; j <= numRows; j++) {
+        var rowData = [];
+        for (var k = 1; k <= numColumns; k++) {
+          if (dataType === "plainText") {
+            rowData.push(generateRandomText());
+          } else if (dataType === "integer") {
+            rowData.push(generateRandomInteger());
+          } else if (dataType === "float") {
+            rowData.push(generateRandomFloat());
+          } else if (dataType === "date") {
+            rowData.push(generateRandomDate());
+          } else if (dataType === "dateTime") {
+            rowData.push(generateRandomDateTime());
+          }
+        }
+        csvContent += rowData.join(",") + "\n";
+      }
+
+      var encodedURI = encodeURI(csvContent);
+      var link = document.createElement("a");
+      link.setAttribute("href", encodedURI);
+      link.setAttribute("download", "table.csv");
+      link.style.display = "none";
+
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
-    csvContent += rowData.join(",") + "\n";
-  }
-
-  var encodedURI = encodeURI(csvContent);
-  var link = document.createElement("a");
-  link.setAttribute("href", encodedURI);
-  link.setAttribute("download", "table.csv");
-  link.style.display = "none";
-
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
   </script>
 </body>
 </html>
+
+
