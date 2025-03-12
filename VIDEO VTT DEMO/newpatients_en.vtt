@@ -1,0 +1,361 @@
+WEBVTT
+
+00:00:00.240 --> 00:00:06.814
+This video will cover
+
+00:00:06.880 --> 00:00:08.440
+how to enter new patients and how
+
+00:00:08.506 --> 00:00:10.760
+to look up existing patients in ANDHII.
+
+00:00:10.920 --> 00:00:13.880
+The patient list is your home screen
+and from here you will use it
+
+00:00:13.946 --> 00:00:17.360
+to enter new patients or to look up
+previously entered patients.
+
+00:00:17.920 --> 00:00:20.880
+From here you will be able
+to review patient information,
+
+00:00:21.080 --> 00:00:25.680
+return to an incomplete visit entry,
+or start a follow up visit entry.
+
+00:00:26.720 --> 00:00:29.760
+As a new user,
+your patient list will be empty.
+
+00:00:29.920 --> 00:00:33.134
+You can add your first patient
+by clicking the Add Patient button
+
+00:00:33.200 --> 00:00:34.840
+to the right of the search bar.
+
+00:00:35.520 --> 00:00:38.894
+Patients in ANDHII are sorted
+into projects based on the purpose
+
+00:00:38.960 --> 00:00:40.560
+for which they were entered.
+
+00:00:40.760 --> 00:00:45.400
+This helps us in aggregating the data
+so that we know, for example, that data
+
+00:00:45.480 --> 00:00:49.320
+from a research study is kept separate
+from general practice data.
+
+00:00:50.320 --> 00:00:55.014
+Most users will be assigned to two
+projects, Education and Practice and
+
+00:00:55.080 --> 00:00:57.120
+the National Quality Improvement Pool.
+
+00:00:57.760 --> 00:01:02.094
+The Education and Practice project
+is a project you can use to practice
+
+00:01:02.160 --> 00:01:04.160
+recording data into ANDHII.
+
+00:01:04.360 --> 00:01:07.374
+The National Quality Improvement Pool
+is a project that you can
+
+00:01:07.440 --> 00:01:09.640
+use to enter real patient data.
+
+00:01:10.240 --> 00:01:13.454
+Data entered in the National
+Quality Improvement Pool can be used
+
+00:01:13.520 --> 00:01:16.160
+for quality data aggregation efforts.
+
+00:01:16.800 --> 00:01:20.480
+If you are involved in a special project
+that uses ANDHII, for example
+
+00:01:20.560 --> 00:01:24.120
+a research study, you may have
+other projects you are assigned to.
+
+00:01:26.920 --> 00:01:30.854
+After verifying the correct project
+is selected, you will enter the patient's
+
+00:01:30.920 --> 00:01:32.640
+country and state of residence.
+
+00:01:32.840 --> 00:01:36.534
+Unless you are involved in a special
+project using ANDHII, the platform only
+
+00:01:36.600 --> 00:01:38.360
+collects de identified data.
+
+00:01:38.680 --> 00:01:42.960
+You will not be able to enter names,
+medical record numbers, addresses,
+
+00:01:43.040 --> 00:01:44.880
+or other patient identifiers.
+
+00:01:45.640 --> 00:01:48.600
+Once you indicate the country
+and state of residence for the patient,
+
+00:01:48.666 --> 00:01:50.160
+click Create Patient.
+
+00:01:51.240 --> 00:01:53.600
+This will take you
+to the Visit entry screen.
+
+00:01:53.760 --> 00:01:56.920
+We're going to go over this
+in detail in a future video.
+
+00:01:57.400 --> 00:02:00.454
+At any time, you can click Patients
+in the navigation bar
+
+00:02:00.520 --> 00:02:02.440
+to get back to your patient list.
+
+00:02:03.000 --> 00:02:06.360
+If you're in the middle of a visit,
+make sure you scroll to the bottom
+
+00:02:06.700 --> 00:02:08.360
+of the page and save your work.
+
+00:02:08.680 --> 00:02:12.040
+There will be more information
+on saving visits in a different video.
+
+00:02:13.800 --> 00:02:17.720
+Before we leave this page, take a moment
+to look at the patient info area.
+
+00:02:18.120 --> 00:02:22.160
+You'll notice that your patient has
+been assigned a re identification code.
+
+00:02:22.520 --> 00:02:26.254
+This is the one type of patient identifier
+that is permitted by HIPAA and
+
+00:02:26.320 --> 00:02:30.160
+the purpose of this nonsense string
+of letters and numbers is to let you,
+
+00:02:30.280 --> 00:02:34.880
+the provider, keep track of which of
+your patients this ANDHII entry represents.
+
+00:02:35.480 --> 00:02:39.120
+Using this code, you'll be able
+to search for this patient in ANDHII.
+
+00:02:39.320 --> 00:02:43.614
+From there you will be able to record
+follow up visits or access your data
+
+00:02:43.680 --> 00:02:47.960
+to create charts and graphs to highlight
+your patient's outcomes data.
+
+00:02:50.520 --> 00:02:52.760
+You'll need to keep track of this code.
+
+00:02:52.920 --> 00:02:57.000
+There's no possible way for us to help you
+link any records back to real patients.
+
+00:02:57.080 --> 00:03:02.040
+If the code is lost, you also
+have some responsibility for the code.
+
+00:03:02.200 --> 00:03:04.880
+In order to keep the data
+in ANDHII de identified,
+
+00:03:05.000 --> 00:03:07.000
+you must keep the code secure.
+
+00:03:07.160 --> 00:03:11.400
+Never share anything that links the code
+to the patient outside of your facility.
+
+00:03:11.840 --> 00:03:14.654
+We recommend that you store
+the reidentification code in
+
+00:03:14.720 --> 00:03:19.080
+your patient's medical record in the
+free text portion of your progress note.
+
+00:03:19.600 --> 00:03:22.894
+Security measures that exist
+for the medical record should be in place
+
+00:03:22.960 --> 00:03:26.440
+to keep the code and the link
+to the patient's information safe.
+
+00:03:27.520 --> 00:03:31.080
+Let's return to the patient list
+to learn more about managing patients.
+
+00:03:31.600 --> 00:03:34.734
+I'm going to copy this
+reidentification code to make it easier
+
+00:03:34.800 --> 00:03:37.680
+to locate this patient later in practice.
+
+00:03:37.760 --> 00:03:41.574
+You can copy the reidentification code
+from the progress note that you saved it
+
+00:03:41.640 --> 00:03:45.240
+to so that you're able to search
+for the patient in the patient list.
+
+00:03:49.040 --> 00:03:52.960
+The patient list will accumulate
+every patient that you enter into ANDHII.
+
+00:03:53.120 --> 00:03:56.294
+You can choose how many patients
+to show on your patient list,
+
+00:03:56.360 --> 00:03:59.814
+and you can navigate through the pages
+of patients by clicking the arrows
+
+00:03:59.880 --> 00:04:01.320
+at the bottom of the list.
+
+00:04:02.040 --> 00:04:06.800
+However, the best way to find a specific
+patient is to use the search box.
+
+00:04:07.000 --> 00:04:11.520
+In the search box, you can type
+all or part of a reidentification code
+
+00:04:11.640 --> 00:04:14.760
+to filter the list and hide
+the patients that don't match.
+
+00:04:15.400 --> 00:04:17.680
+When I paste the code
+that I copied earlier,
+
+00:04:17.760 --> 00:04:21.720
+the other patients disappear and only
+the one matching patient is available.
+
+00:04:23.120 --> 00:04:26.920
+You'll have access to a few buttons
+for each patient on the patient list.
+
+00:04:27.240 --> 00:04:29.400
+The first button is the New Entry button.
+
+00:04:29.480 --> 00:04:33.094
+The New Entry button is one way to start
+a new entry for a patient for whom
+
+00:04:33.160 --> 00:04:35.160
+you've already entered an initial visit.
+
+00:04:36.040 --> 00:04:38.840
+The second button is
+the View Patient button.
+
+00:04:39.000 --> 00:04:42.280
+The View Patient button takes you
+to your patient's details.
+
+00:04:42.440 --> 00:04:46.014
+From here, you can view previously
+entered visits or continue a visit
+
+00:04:46.080 --> 00:04:47.520
+that you haven't finished.
+
+00:04:47.960 --> 00:04:51.174
+You can also view your patient's
+details directly on the patient list
+
+00:04:51.240 --> 00:04:53.440
+by clicking the Show Details arrow.
+
+00:04:54.720 --> 00:04:59.854
+From here you can edit the patient's state
+and country, access a previously entered
+
+00:04:59.920 --> 00:05:04.494
+visit, start a new follow up entry
+for the patient, or view and download
+
+00:05:04.560 --> 00:05:06.880
+a summary report of the patient's visit.
+
+00:05:07.680 --> 00:05:11.080
+You will also see a red circle
+under Incomplete Entry.
+
+00:05:11.440 --> 00:05:14.934
+This is a quick way to tell from
+your patient list whether the patient
+
+00:05:15.000 --> 00:05:17.400
+has an entry that has not been finalized.
+
+00:05:18.000 --> 00:05:20.840
+If this is the case, you
+will need to return to the visit
+
+00:05:20.920 --> 00:05:22.920
+to finish the entry and finalize.
+
+00:05:23.480 --> 00:05:28.134
+If you see the red circle under Incomplete
+entry, you can click on the arrow to show
+
+00:05:28.200 --> 00:05:33.400
+details Incomplete entries are marked
+with an exclamation point in a circle.
+
+00:05:34.200 --> 00:05:38.200
+You can navigate to an incomplete entry
+by clicking on the entry date.
+
+00:05:39.160 --> 00:05:43.294
+You can also navigate to a complete entry
+by clicking on the entry date, but
+
+00:05:43.360 --> 00:05:45.560
+you will not be able to edit the entry.
+
+00:05:47.400 --> 00:05:50.200
+That's all there is to
+creating and managing patients.
+
+00:05:50.360 --> 00:05:53.174
+In the next section of videos,
+we'll explore how to enter data
+
+00:05:53.240 --> 00:05:53.960
+for your patient visit.

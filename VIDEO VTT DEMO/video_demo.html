@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Patients video with VTT subtitle tracks</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        video {
+            max-width: 90%;
+            max-height: 90vh;
+        }
+    </style>
+</head>
+<body>
+
+    <video controls>
+        <source src="newpatients.mp4" type="video/mp4">
+        <track src="newpatients_en.vtt" label="English" kind="subtitles" srclang="en">
+        <track src="newpatients_es.vtt" label="español" kind="subtitles" srclang="es">
+        Your browser does not support the video tag.
+    </video>
+
+</body>
+</html>
