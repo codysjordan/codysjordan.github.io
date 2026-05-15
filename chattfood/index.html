@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chattanooga Eats Finder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #f97316;
+            --primary-hover: #ea580c;
+            --accent: #6366f1;
+            --radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            min-height: calc(100vh - 32px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+            margin-top: 12px;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .base-camp-badge {
+            background-color: #ffedd5;
+            color: #c2410c;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.75rem;
+        }
+
+        /* Views */
+        .view {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Action Buttons */
+        .btn-surprise {
+            background: linear-gradient(135deg, var(--primary), #ec4899);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25);
+            transition: transform 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .btn-surprise:active {
+            transform: scale(0.97);
+        }
+
+        /* Category Grid */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .category-card {
+            background-color: var(--card-bg);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius);
+            padding: 20px 16px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .category-card:active {
+            transform: scale(0.95);
+            background-color: #f1f5f9;
+        }
+
+        .category-icon {
+            font-size: 1.75rem;
+        }
+
+        /* Details View Header */
+        .results-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .btn-back {
+            background-color: #e2e8f0;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        /* Restaurant Cards */
+        .restaurant-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .restaurant-info h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .distance-tag {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .distance-tag.closest {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-sub {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .food-truck-note {
+            font-size: 0.8rem;
+            color: #b45309;
+            background-color: #fef3c7;
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-maps {
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-maps:hover {
+            background-color: var(--primary-hover);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <h1>Chattanooga Food Picker</h1>
+        <p>Distances measured cleanly from</p>
+        <span class="base-camp-badge">📍 3836 Pennsylvania Ave</span>
+    </header>
+
+    <div id="main-view" class="view active">
+        <button class="btn-surprise" onclick="surpriseMe()">Surprise Us! 🎲</button>
+        <div class="category-grid" id="category-container">
+            </div>
+    </div>
+
+    <div id="details-view" class="view">
+        <div class="results-header">
+            <span class="category-title" id="selected-category-name">Category</span>
+            <button class="btn-back" onclick="showMainView()">← Back</button>
+        </div>
+        <div id="restaurant-list" style="display: flex; flex-direction: column; gap: 14px;">
+            </div>
+    </div>
+</div>
+
+<script>
+    // Comprehensive structured restaurant data with accurate straight-line / driving distance mapping from St. Elmo
+    const restaurants = [
+        { name: "Goodman Coffee", categories: ["Coffee"], distance: 0.2, addr: "3913 St Elmo Ave", maps: "https://www.google.com/maps/search/?api=1&query=Goodman+Coffee+Roasters+St+Elmo+Chattanooga" },
+        { name: "Mr T's Pizza and Ice Cream", categories: ["Pizza", "Ice Cream"], distance: 0.2, addr: "3924 Tennessee Ave", maps: "https://www.google.com/maps/search/?api=1&query=Mr+Ts+Pizza+and+Ice+Cream+Chattanooga" },
+        { name: "The Hummus Bowl", categories: ["Mediterranean"], distance: 0.2, addr: "3931 St Elmo Ave", maps: "https://www.google.com/maps/search/?api=1&query=The+Hummus+Bowl+Chattanooga" },
+        { name: "Han-Mi", categories: ["Korean"], distance: 1.4, addr: "3103 Broad St", maps: "https://www.google.com/maps/search/?api=1&query=Han-Mi+Chattanooga" },
+        { name: "Brothers Bagel", categories: ["Bagels"], distance: 9.2, addr: "3805 Hixson Pike", maps: "https://www.google.com/maps/search/?api=1&query=Brothers+Bagel+Chattanooga" },
+        { name: "High Su Vegetarian", categories: ["Chinese"], distance: 21.0, addr: "9408 Apison Pike, Collegedale", maps: "https://www.google.com/maps/search/?api=1&query=High+Su+Vegetarian+Collegedale" },
+        { name: "Attack of the Tatsu", categories: ["Ramen"], distance: 4.1, addr: "818 Georgia Ave", maps: "https://www.google.com/maps/search/?api=1&query=Attack+of+the+Tatsu+Chattanooga" },
+        { name: "Sleepyhead Coffee", categories: ["Coffee", "Pastries"], distance: 4.0, addr: "735 Broad St", maps: "https://www.google.com/maps/search/?api=1&query=Sleepyhead+Coffee+Chattanooga" },
+        { name: "Taco Mamacita", categories: ["Mexican"], distance: 5.1, addr: "109 N Market St", maps: "https://www.google.com/maps/search/?api=1&query=Taco+Mamacita+Chattanooga" },
+        { name: "Dos Bros", categories: ["Mexican"], distance: 2.8, addr: "1700 Broad St", maps: "https://www.google.com/maps/search/?api=1&query=Dos+Bros+Fresh+Mexican+Grill+Broad+St+Chattanooga" },
+        { name: "Carving Rock Bakery", categories: ["Pastries"], distance: 3.7, addr: "301 E ML King Blvd", maps: "https://www.google.com/maps/search/?api=1&query=Carving+Rock+Kitchen+Chattanooga" },
+        { name: "Sluggo's", categories: ["Sunday Brunch"], distance: 4.9, addr: "505 Cherokee Blvd", maps: "https://www.google.com/maps/search/?api=1&query=Sluggos+Chattanooga" },
+        { name: "Chattanooga Pizza Co.", categories: ["Pizza"], distance: 4.3, addr: "2000 E 23rd St", maps: "https://www.google.com/maps/search/?api=1&query=Chattanooga+Pizza+Co+Chattanooga" },
+        { name: "Mah Kin", categories: ["Thai"], distance: 7.9, addr: "5210 Brainerd Rd", maps: "https://www.google.com/maps/search/?api=1&query=Mah+Kin+Chattanooga" },
+        { name: "Chubby Vegan", categories: ["Burgers"], distance: 3.2, addr: "Mobile Food Truck", maps: "https://www.google.com/maps/search/?api=1&query=Chubby+Vegan+Food+Truck+Chattanooga", isTruck: true }
+    ];
+
+    // Aesthetic mapping for category visual badges
+    const categoryIcons = {
+        "Coffee": "☕", "Pizza": "🍕", "Ice Cream": "🍦", "Mediterranean": "🧆", 
+        "Korean": "🥢", "Bagels": "🥯", "Chinese": "🥡", "Ramen": "🍜", 
+        "Pastries": "🥐", "Mexican": "🌮", "Sunday Brunch": "🥞", "Thai": "🍛", "Burgers": "🍔"
+    };
+
+    // Auto-generate categories from the data array
+    function getUniqueCategories() {
+        const cats = new Set();
+        restaurants.forEach(r => r.categories.forEach(c => cats.add(c)));
+        return Array.from(cats).sort();
+    }
+
+    // Render category cards on load
+    function initCategories() {
+        const container = document.getElementById('category-container');
+        const uniqueCategories = getUniqueCategories();
+
+        uniqueCategories.forEach(cat => {
+            const icon = categoryIcons[cat] || "🍽️";
+            const card = document.createElement('div');
+            card.className = 'category-card';
+            card.onclick = () => showCategory(cat);
+            card.innerHTML = `
+                <span class="category-icon">${icon}</span>
+                <span>${cat}</span>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Navigate to specified category list
+    function showCategory(category) {
+        document.getElementById('selected-category-name').innerText = `${categoryIcons[category] || ''} ${category}`;
+        const listContainer = document.getElementById('restaurant-list');
+        listContainer.innerHTML = '';
+
+        // Filter and sort by closest location first
+        const matches = restaurants
+            .filter(r => r.categories.includes(category))
+            .sort((a, b) => a.distance - b.distance);
+
+        matches.forEach(place => {
+            const card = document.createElement('div');
+            card.className = 'restaurant-card';
+            
+            const isClosest = place.distance <= 0.5;
+            const distanceClass = isClosest ? 'distance-tag closest' : 'distance-tag';
+            const distanceIcon = isClosest ? '🔥 Very Close:' : '📍';
+
+            card.innerHTML = `
+                <div class="restaurant-info">
+                    <h3>${place.name}</h3>
+                    <div class="meta-row">
+                        <span class="${distanceClass}">${distanceIcon} ${place.distance} mi</span>
+                        ${place.categories.map(c => `<span class="badge-sub">${c}</span>`).join('')}
+                    </div>
+                </div>
+                ${place.isTruck ? `<div class="food-truck-note">🚚 Mobile Food Truck (Distance varies, check schedule!)</div>` : ''}
+                <a href="${place.maps}" target="_blank" class="btn-maps">🗺️ Open in Google Maps</a>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        document.getElementById('main-view').classList.remove('active');
+        document.getElementById('details-view').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showMainView() {
+        document.getElementById('details-view').classList.remove('active');
+        document.getElementById('main-view').classList.add('active');
+    }
+
+    // Pick a completely random category to surprise you!
+    function surpriseMe() {
+        const uniqueCategories = getUniqueCategories();
+        const randomCategory = uniqueCategories[Math.floor(Math.random() * uniqueCategories.length)];
+        showCategory(randomCategory);
+    }
+
+    // Run layout generator on startup
+    initCategories();
+</script>
+</body>
+</html>
